@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { useImageFallback } from '@/hooks/useImageFallback'
 
 // Datos de ejemplo - luego podrías moverlos a un archivo separado o base de datos
 const featuredCars = [
@@ -36,6 +37,22 @@ const featuredCars = [
     image: '/images/cars/kicks-2017/1.jpg'
   }
 ]
+
+// Componente para manejar cada imagen con fallback
+function FeaturedCarImage({ car }: { car: typeof featuredCars[0] }) {
+  const { src: imageSrc, onError } = useImageFallback(car.image)
+  
+  return (
+    <Image
+      src={imageSrc}
+      alt={car.name}
+      fill
+      className="object-cover rounded-t-lg"
+      sizes="(max-width: 768px) 100vw, 33vw"
+      onError={onError}
+    />
+  )
+}
 
 export default function FeaturedCars() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -86,13 +103,7 @@ export default function FeaturedCars() {
               >
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-fadeIn">
                   <div className="relative h-48 md:h-64">
-                    <Image
-                      src={car.image}
-                      alt={car.name}
-                      fill
-                      className="object-cover rounded-t-lg"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
+                    <FeaturedCarImage car={car} />
                   </div>
                   <div className="p-4">
                     <h3 className="text-lg font-semibold text-primary">{car.name}</h3>

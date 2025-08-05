@@ -3,9 +3,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useImageFallback } from '@/hooks/useImageFallback'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { src: logoSrc, onError } = useImageFallback('/images/car-point-logo.png')
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -18,12 +20,13 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link href="/" className="block hover:opacity-80 transition-opacity">
               <Image
-                src="/images/car-point-logo.png"
+                src={logoSrc}
                 alt="Car Point Logo"
                 width={600}
                 height={150}
                 priority
                 className="h-[110px] md:h-[150px] w-auto object-contain brightness-110"
+                onError={onError}
               />
             </Link>
           </div>

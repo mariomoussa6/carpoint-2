@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useImageFallback } from '@/hooks/useImageFallback';
 
 type Car = {
   id: number;
@@ -31,6 +32,7 @@ export default function CarModal({ car, isOpen, onClose }: CarModalProps) {
   if (!car || !isOpen) return null;
 
   const currentImage = car.images?.[currentImageIndex] || car.image;
+  const { src: imageSrc, onError } = useImageFallback(currentImage);
 
   const nextImage = () => {
     if (car.images) {
@@ -65,12 +67,13 @@ export default function CarModal({ car, isOpen, onClose }: CarModalProps) {
                   onClick={() => setShowFullscreenGallery(true)}
                 >
                   <Image
-                    src={currentImage}
+                    src={imageSrc}
                     alt={`${car.brand} ${car.model}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 60vw"
                     priority
+                    onError={onError}
                   />
                 </div>
               </div>
@@ -165,12 +168,13 @@ export default function CarModal({ car, isOpen, onClose }: CarModalProps) {
               className="relative w-full max-w-5xl h-[80vh]"
               onClick={(e) => e.stopPropagation()}>
               <Image
-                src={currentImage}
+                src={imageSrc}
                 alt={`${car.brand} ${car.model}`}
                 fill
                 className="object-contain"
                 sizes="100vw"
                 priority
+                onError={onError}
               />
             </div>
 

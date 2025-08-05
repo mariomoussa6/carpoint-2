@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useImageFallback } from '@/hooks/useImageFallback'
 
 interface Car {
   id: number
@@ -25,6 +26,7 @@ interface CarCardProps {
 }
 
 export default function CarCard({ car, onClick }: CarCardProps & { onClick: () => void }) {
+  const { src: imageSrc, onError } = useImageFallback(car.image)
 
   return (
     <div 
@@ -34,12 +36,13 @@ export default function CarCard({ car, onClick }: CarCardProps & { onClick: () =
         {/* Car Image */}
         <div className="relative h-48 md:h-56 w-full">
           <Image
-            src={car.image}
+            src={imageSrc}
             alt={`${car.brand} ${car.model}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority
             className="object-cover"
+            onError={onError}
           />
         </div>
       </div>
