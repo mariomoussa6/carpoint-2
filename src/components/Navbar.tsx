@@ -23,19 +23,7 @@ export default function Navbar() {
                 width={600}
                 height={150}
                 priority
-<<<<<<< HEAD
-                style={{
-                  height: '110px',
-                  width: 'auto',
-                  objectFit: 'contain',
-                  filter: 'brightness(1.2)',
-                  '@media screen and (minWidth: 768px)': {
-                    height: '150px'
-                  }
-                }}
-=======
                 className="h-[110px] md:h-[150px] w-auto object-contain brightness-110"
->>>>>>> master
               />
             </Link>
           </div>

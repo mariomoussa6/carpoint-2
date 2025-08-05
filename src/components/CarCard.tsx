@@ -14,10 +14,7 @@ interface Car {
   location: string
   image: string
   whatsapp: string
-<<<<<<< HEAD
-=======
   images?: string[]
->>>>>>> master
   isNew?: boolean
   isOutlet?: boolean
   discountPercentage?: number

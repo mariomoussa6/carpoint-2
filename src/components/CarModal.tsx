@@ -12,13 +12,9 @@ type Car = {
   version: string;
   transmission: string;
   price: number;
-<<<<<<< HEAD
-  image: string;
-=======
   location: string;
   image: string;
   whatsapp: string;
->>>>>>> master
   images?: string[];
 };
 

@@ -5,9 +5,6 @@ import CarCard from './CarCard'
 import Filters from './Filters'
 import CarModal from './CarModal'
 
-<<<<<<< HEAD
-const cars = [
-=======
 // Definir el tipo Car para consistencia
 interface Car {
   id: number
@@ -28,7 +25,6 @@ interface Car {
 }
 
 const cars: Car[] = [
->>>>>>> master
   {
     id: 1,
     brand: 'Peugeot',
@@ -38,11 +34,8 @@ const cars: Car[] = [
     version: 'Allure',
     transmission: 'Manual',
     price: 15900000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/peugeot-208-2025/1.jpg',
     images: [
       '/images/cars/peugeot-208-2025/1.jpg',  // Frontal
@@ -63,11 +56,8 @@ const cars: Car[] = [
     version: 'V6 Highline Extreme',
     transmission: 'Automático',
     price: 17500000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/amarok-2017/1.jpg',
     images: [
       '/images/cars/amarok-2017/1.jpg',
@@ -86,11 +76,8 @@ const cars: Car[] = [
     version: 'Comfortline',
     transmission: 'Manual',
     price: 14800000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/nivus-2021/1.png',
     images: [
       '/images/cars/nivus-2021/1.png',
@@ -109,11 +96,8 @@ const cars: Car[] = [
     version: 'Intense',
     transmission: 'Manual',
     price: 18900000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/kwid-2021/1.jpg',
     images: [
       '/images/cars/kwid-2021/1.jpg',
@@ -133,11 +117,8 @@ const cars: Car[] = [
     version: 'Advance',
     transmission: 'Automático',
     price: 16700000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/kicks-2017/1.jpg',
     images: [
       '/images/cars/kicks-2017/1.jpg',
@@ -157,11 +138,8 @@ const cars: Car[] = [
     version: 'EXL',
     transmission: 'Automático',
     price: 15500000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/hrv-2016/1.jpg',
     images: [
       '/images/cars/hrv-2016/1.jpg',
@@ -181,11 +159,8 @@ const cars: Car[] = [
     version: 'XLS',
     transmission: 'Automático',
     price: 16900000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/etios-2020/1.png',
     images: [
       '/images/cars/etios-2020/1.png',
@@ -204,11 +179,8 @@ const cars: Car[] = [
     version: 'Live',
     transmission: 'Manual',
     price: 14200000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/c3-2016/1.jpg',
     images: [
       '/images/cars/c3-2016/1.jpg',
@@ -228,11 +200,8 @@ const cars: Car[] = [
     version: 'Highline',
     transmission: 'Automático',
     price: 25800000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/amarok-v6-2023/1.jpg',
     images: [
       '/images/cars/amarok-v6-2023/1.jpg',
@@ -251,11 +220,8 @@ const cars: Car[] = [
     version: 'Trendline',
     transmission: 'Automático',
     price: 27500000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/amarok-2018/1.jpg',
     images: [
       '/images/cars/amarok-2018/1.jpg',
@@ -275,11 +241,8 @@ const cars: Car[] = [
     version: 'Allure',
     transmission: 'Manual',
     price: 28900000,
-<<<<<<< HEAD
-=======
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
->>>>>>> master
     image: '/images/cars/peugeot-408-2014/1.jpg',
     images: [
       '/images/cars/peugeot-408-2014/1.jpg',
@@ -298,18 +261,6 @@ const cars: Car[] = [
     mileage: 42000,
     version: 'Comfortline',
     transmission: 'Manual',
-<<<<<<< HEAD
-        price: 19800000,
-      image: '/images/cars/amarok-comfortline-2017/1.jpg',
-      images: [
-        '/images/cars/amarok-comfortline-2017/1.jpg',
-        '/images/cars/amarok-comfortline-2017/2.jpg',
-        '/images/cars/amarok-comfortline-2017/3.jpg',
-        '/images/cars/amarok-comfortline-2017/4.jpg',
-        '/images/cars/amarok-comfortline-2017/5.jpg',
-        '/images/cars/amarok-comfortline-2017/6.jpg'
-      ]
-=======
     price: 19800000,
     location: 'San Miguel de Tucumán',
     whatsapp: '+54 9 381 123-4567',
@@ -322,16 +273,11 @@ const cars: Car[] = [
       '/images/cars/amarok-comfortline-2017/5.jpg',
       '/images/cars/amarok-comfortline-2017/6.jpg'
     ]
->>>>>>> master
   }
 ]
 
 export default function CarList() {
-<<<<<<< HEAD
-  const [selectedCar, setSelectedCar] = useState<typeof cars[0] | null>(null)
-=======
   const [selectedCar, setSelectedCar] = useState<Car | null>(null)
->>>>>>> master
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [displayedCars, setDisplayedCars] = useState(cars)
