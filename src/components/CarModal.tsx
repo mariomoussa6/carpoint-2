@@ -29,10 +29,12 @@ export default function CarModal({ car, isOpen, onClose }: CarModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showFullscreenGallery, setShowFullscreenGallery] = useState(false);
 
-  if (!car || !isOpen) return null;
-
-  const currentImage = car.images?.[currentImageIndex] || car.image;
+  // Llamar todos los hooks ANTES de cualquier return condicional
+  const currentImage = car?.images?.[currentImageIndex] || car?.image || '';
   const { src: imageSrc, onError } = useImageFallback(currentImage);
+
+  // DESPUÉS de todos los hooks, hacer las verificaciones condicionales
+  if (!car || !isOpen) return null;
 
   const nextImage = () => {
     if (car.images) {
