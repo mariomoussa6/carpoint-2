@@ -57,15 +57,15 @@ export default function CarModal({ car, isOpen, onClose }: CarModalProps) {
       >
         {/* Modal content */}
         <div 
-          className="relative w-full max-w-6xl bg-white rounded-lg shadow-xl p-6"
+          className="relative w-full max-w-sm md:max-w-6xl bg-white rounded-lg shadow-xl p-3 md:p-6"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flex-col md:flex-row gap-6">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-6">
             {/* Image section */}
             <div className="w-full md:w-3/5">
               <div className="relative">
                 <div
-                  className="relative h-80 md:h-[500px] w-full rounded-lg overflow-hidden cursor-pointer"
+                  className="relative h-48 md:h-[500px] w-full rounded-lg overflow-hidden cursor-pointer group"
                   onClick={() => setShowFullscreenGallery(true)}
                 >
                   <Image
@@ -77,6 +77,42 @@ export default function CarModal({ car, isOpen, onClose }: CarModalProps) {
                     priority
                     onError={onError}
                   />
+                  
+                  {/* Flechas del carrusel - solo mostrar si hay múltiples imágenes */}
+                  {car.images && car.images.length > 1 && (
+                    <>
+                      {/* Flecha izquierda */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          previousImage();
+                        }}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 md:p-3 transition-all duration-200 opacity-80 hover:opacity-100"
+                      >
+                        <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      
+                      {/* Flecha derecha */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          nextImage();
+                        }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 md:p-3 transition-all duration-200 opacity-80 hover:opacity-100"
+                      >
+                        <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                      
+                      {/* Indicador de imagen actual */}
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/50 text-white px-2 py-1 rounded-full text-xs">
+                        {currentImageIndex + 1} / {car.images.length}
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
