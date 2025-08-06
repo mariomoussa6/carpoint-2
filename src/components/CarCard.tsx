@@ -26,7 +26,7 @@ interface CarCardProps {
 }
 
 export default function CarCard({ car, onClick }: CarCardProps & { onClick: () => void }) {
-  const { src: imageSrc, onError } = useImageFallback(car.image)
+  const { src: imageSrc, onError, onLoad, isLoading } = useImageFallback(car.image)
 
   return (
     <div 
@@ -43,7 +43,13 @@ export default function CarCard({ car, onClick }: CarCardProps & { onClick: () =
             priority
             className="object-cover"
             onError={onError}
+            onLoad={onLoad}
           />
+          {isLoading && (
+            <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+              <div className="text-gray-400 text-sm">Cargando...</div>
+            </div>
+          )}
         </div>
       </div>
 

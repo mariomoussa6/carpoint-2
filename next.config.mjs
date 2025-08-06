@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Desactivar optimización de imágenes para solucionar problemas en Vercel
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -10,9 +12,7 @@ const nextConfig = {
     // Configuración específica para Vercel
     loader: 'default',
     domains: [],
-    // Formatos soportados (comentado temporalmente para debugging)
-    // formats: ['image/webp', 'image/avif'],
-    // Tamaños de imagen para optimización
+    // Tamaños de imagen para optimización (mantenidos por compatibilidad)
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     // Configuración para manejar mejor las imágenes estáticas
@@ -22,8 +22,6 @@ const nextConfig = {
   },
   // Configuración específica para Vercel
   trailingSlash: false,
-  // Revertir output standalone si causa problemas con imágenes
-  // output: 'standalone',
 }
 
 export default nextConfig; 
