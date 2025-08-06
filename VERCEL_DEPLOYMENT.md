@@ -1,24 +1,30 @@
 # Guía de Deployment en Vercel - Solución de Imágenes
 
 ## Problema Resuelto ✅
-Las imágenes aparecían rotas después del deployment en Vercel debido a problemas con la optimización de imágenes de Next.js.
+Las imágenes aparecían rotas después del deployment en Vercel debido a dos problemas principales:
+1. **PROBLEMA PRINCIPAL**: La carpeta `public/` estaba en `.gitignore`, por lo que las imágenes no se subían al repositorio
+2. Problemas con la optimización de imágenes de Next.js
 
 ## Soluciones Implementadas
 
-### 1. Configuración de Next.js (`next.config.mjs`)
-- **SOLUCIÓN PRINCIPAL**: Desactivar optimización de imágenes (`unoptimized: true`)
+### 1. Corrección de .gitignore (CRÍTICO)
+- **SOLUCIÓN PRINCIPAL**: Comentar `public` en `.gitignore` para permitir que las imágenes se suban al repositorio
+- Sin esto, Vercel nunca tendrá acceso a las imágenes locales
+
+### 2. Configuración de Next.js (`next.config.mjs`)
+- Desactivar optimización de imágenes (`unoptimized: true`) para evitar problemas con el optimizador
 - Configuración específica para Vercel
 - Configuración de cachéo y TTL
 - Configuración de seguridad para SVGs
 
-### 2. Hook de Fallback Mejorado (`src/hooks/useImageFallback.ts`)
+### 3. Hook de Fallback Mejorado (`src/hooks/useImageFallback.ts`)
 - Hook personalizado que maneja errores de carga de imágenes
 - Fallback automático a imagen placeholder
 - Estado de carga y manejo de errores mejorado
 - Logs para debugging
 - Reset automático cuando cambian las fuentes
 
-### 3. Componentes Actualizados
+### 4. Componentes Actualizados
 - `CarCard.tsx`: Imágenes con fallback y estado de carga
 - `CarModal.tsx`: Manejo de errores en modal y galería
 - `FeaturedCars.tsx`: Componente separado para imágenes
@@ -27,12 +33,14 @@ Las imágenes aparecían rotas después del deployment en Vercel debido a proble
 
 ## 🚀 Pasos para Re-deployment
 
-1. **Commit los cambios:**
+1. **Cambios aplicados:**
    ```bash
+   # YA COMPLETADO ✅
    git add .
-   git commit -m "Fix: Desactivar optimización de imágenes y mejorar fallbacks para Vercel"
+   git commit -m "Fix: Agregar imágenes al repositorio y corregir configuración para Vercel"
    git push
    ```
+   ✅ **9.68 MB de imágenes subidas al repositorio**
 
 2. **Deploy en Vercel:**
    - El deployment se hará automáticamente si tienes GitHub conectado
