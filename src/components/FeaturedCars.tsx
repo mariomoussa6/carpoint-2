@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { useImageFallback } from '@/hooks/useImageFallback'
 
@@ -57,6 +57,9 @@ function FeaturedCarImage({ car }: { car: typeof featuredCars[0] }) {
 export default function FeaturedCars() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -74,15 +77,54 @@ export default function FeaturedCars() {
   }, [])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => {
-        const maxIndex = isMobile ? featuredCars.length - 1 : featuredCars.length - 3;
-        return prevIndex === maxIndex ? 0 : prevIndex + 1;
-      });
-    }, 8000); // Cambia cada 8 segundos
+    // Solo activar carrusel automático en escritorio
+    if (!isMobile) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => {
+          const maxIndex = featuredCars.length - 3;
+          return prevIndex === maxIndex ? 0 : prevIndex + 1;
+        });
+      }, 8000); // Cambia cada 8 segundos
 
-    return () => clearInterval(interval)
+      return () => clearInterval(interval)
+    }
   }, [isMobile])
+
+  // Funciones para manejar swipe
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isMobile && (isLeftSwipe || isRightSwipe)) {
+      if (isLeftSwipe) {
+        // Swipe izquierda - ir al siguiente
+        setCurrentIndex((prevIndex) => {
+          const maxIndex = featuredCars.length - 1;
+          return prevIndex === maxIndex ? 0 : prevIndex + 1;
+        })
+      }
+      if (isRightSwipe) {
+        // Swipe derecha - ir al anterior
+        setCurrentIndex((prevIndex) => {
+          const maxIndex = featuredCars.length - 1;
+          return prevIndex === 0 ? maxIndex : prevIndex - 1;
+        })
+      }
+    }
+  }
 
   return (
     <section className="bg-gray-100 py-6">
@@ -93,8 +135,12 @@ export default function FeaturedCars() {
         
         <div className="relative overflow-hidden py-2">
           <div 
-            className="flex transition-transform duration-1000 ease-in-out"
+            ref={carouselRef}
+            className="flex transition-transform duration-1000 ease-in-out touch-pan-x select-none"
             style={{ transform: `translateX(-${currentIndex * (isMobile ? 100 : 33.333)}%)` }}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
             {featuredCars.map((car) => (
               <div 
